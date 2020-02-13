@@ -30,19 +30,19 @@ var inquirer = require("inquirer");
 var fs = require('fs');
 var axios = require('axios');
 var convertFactory = require('electron-html-to');
-
+var color = require('colors');
 inquirer.prompt([
     {
         type: 'input',
-        favoriteColor: 'Color',
-        message: 'What is your favorite color?'
+        message: 'What is your favorite color?',
+        name: 'color'
     }, 
     {
       type:'input',
-      userName: "username",
-      message:'What is your username?'
-    }
-]).then(function(answer) {
+      message:'What is your username?',
+      name:'username'
+    }])
+.then(function(answer) {
     axios.get('https://gpi.github.com/users/${answer.usernmae}').then(function(response){
       console.log(response.data);
       response.data.color = answers.color;
